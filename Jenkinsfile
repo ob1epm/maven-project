@@ -33,7 +33,7 @@ stages{
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i "c:/BO/LearningMaterial/Udemy/Mastering Jenkins/TomcatDemo.pem"  **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        sh "scp -i c:/BO/LearningMaterial/Udemy/Mastering Jenkins/TomcatDemo.pem  **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
