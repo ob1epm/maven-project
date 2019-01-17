@@ -1,19 +1,19 @@
 pipeline {
     agent any
-
-    parameters {
+    
+    parameters { 
          string(name: 'tomcat_dev', defaultValue: '18.216.122.0', description: 'Staging Server')
          string(name: 'tomcat_prod', defaultValue: '18.188.187.2', description: 'Production Server')
-    }
-
+    } 
+ 
     triggers {
-         pollSCM('* * * * *')
+         pollSCM('* * * * *') // Polling Source Control
      }
-
+ 
 stages{
         stage('Build'){
             steps {
-				bat 'mvn clean package'
+                bat 'mvn clean package'
             }
             post {
                 success {
@@ -22,18 +22,18 @@ stages{
                 }
             }
         }
-
+ 
         stage ('Deployments'){
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "winscp -i c:s/BO/LearningMaterial/Udemy/Mastering Jenkins/TomcatDemo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"                    
+                        bat "winscp -i c:\BO\LearningMaterial\Udemy\Mastering Jenkins\TomcatDemo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
-
+ 
                 stage ("Deploy to Production"){
                     steps {
-						bat "winscp -i c:s/BO/LearningMaterial/Udemy/Mastering Jenkins/TomcatDemo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        bat "winscp -i c:\BO\LearningMaterial\Udemy\Mastering Jenkins\TomcatDemo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
