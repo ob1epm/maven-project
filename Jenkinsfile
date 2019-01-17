@@ -27,13 +27,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i c:\BO\LearningMaterial\Udemy\Mastering Jenkins\TomcatDemo.pem /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        sh "scp -i c:s/BO/LearningMaterial/Udemy/Mastering Jenkins/TomcatDemo.pem /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i "c:\BO\LearningMaterial\Udemy\Mastering Jenkins\TomcatDemo.pem"  **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        sh "scp -i "c:/BO/LearningMaterial/Udemy/Mastering Jenkins/TomcatDemo.pem"  **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
