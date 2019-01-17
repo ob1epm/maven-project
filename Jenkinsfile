@@ -13,7 +13,9 @@ pipeline {
 stages{
         stage('Build'){
             steps {
-                sh 'mvn clean package'
+        echo 'ASDF 2'
+				sh 'mvn clean package'
+		echo 'ASDF 1'
             }
             post {
                 success {
