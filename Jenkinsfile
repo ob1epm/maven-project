@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {                        
-						bat "pscp -scp -v -i c:/BO/LearningMaterial/Udemy/MasteringJenkins/TomcatDemo.ppk c:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/webapp.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+						bat "pscp -scp -v -i c:/BO/LearningMaterial/Udemy/MasteringJenkins/TomcatDemo.ppk -hostkey 83:b4:32:5d:d5:c4:8b:26:f6:ce:af:c7:5f:ff:ad:a6 c:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/webapp.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
  
