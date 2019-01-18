@@ -26,14 +26,14 @@ stages{
         stage ('Deployments'){
             parallel{
                 stage ('Deploy to Staging'){
-                    steps {
-                        bat "winscp -i c:/BO/LearningMaterial/Udemy/Mastering Jenkins/TomcatDemo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                    steps {                        
+						bat "pscp -scp -v -i c:/BO/LearningMaterial/Udemy/MasteringJenkins/TomcatDemo.ppk c:\Program Files (x86)\Jenkins\workspace\FullyAutomated\webapp\target\webapp.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
  
                 stage ("Deploy to Production"){
-                    steps {
-                        bat "winscp -i c:/BO/LearningMaterial/Udemy/Mastering Jenkins/TomcatDemo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                    steps {                        
+						bat "pscp -scp -v -i c:/BO/LearningMaterial/Udemy/MasteringJenkins/TomcatDemo.ppk c:\Program Files (x86)\Jenkins\workspace\FullyAutomated\webapp\target\webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
